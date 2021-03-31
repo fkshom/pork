@@ -53,32 +53,3 @@ RSpec.describe Pork::Repository do
     expect(actual.target.to_s).to eq '(?-mix:.*)'
   end
 end
-
-RSpec.xdescribe Pork::Repository::Rules do
-  it "each" do
-    rules = Pork::Repository::Rules.new()
-    rules << Pork::Repository::Rule.new(
-      name: 'TERM1',
-      src: ['192.168.0.0/24', '192.168.1.0/24'],
-      srcport: '32768-65535',
-      dst: '10.0.1.50/32',
-      dstport: '53',
-      protocol: 'udp',
-      action: 'accept',
-    )
-    actual = rules.flatten_grep(target: :src){|partial_rule|
-      partial_rule[:src] != '192.168.0.0/24'
-    }.map(&:to_h)
-    expect(actual).to eq([
-      {
-        name: 'TERM1',
-        src: ['192.168.1.0/24'],
-        srcport: ['32768-65535'],
-        dst: ['10.0.1.50/32'],
-        dstport: ['53'],
-        protocol: ['udp'],
-        action: 'accept',
-      }
-    ])
-  end
-end

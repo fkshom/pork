@@ -121,7 +121,7 @@ class Pork::Repository
       raise "dst is not Host class" if not dst.nil? and dst.class != Host
       raise "srcport is not Port class" if not srcport.nil? and srcport.class != Port
       raise "service is not Service class" if not service.nil? and service.class != Service
-      if target.strip == 'all'
+      if target.nil? or target.strip == 'all'
         @target = Regexp.new('.*')
       else
         @target = Regexp.new(target.strip)
