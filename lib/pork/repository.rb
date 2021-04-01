@@ -291,7 +291,7 @@ class Pork::Repository
   def load_some(filename)
     # yaml
     data = YAML.load( File.read(filename) )
-    data['host'].each{|name, value|
+    data['element'].each{|name, value|
       add_host(name: name, address: value)
     }
     # data['object_group']
@@ -306,7 +306,7 @@ class Pork::Repository
   
   def load_dir(dirpath)
     # host, port, service
-    load_some("#{dirpath}/def.yml")
+    load_some("#{dirpath}/elements.yml")
 
     # rule
     Dir.glob("#{dirpath}/*.csv"){|filename|

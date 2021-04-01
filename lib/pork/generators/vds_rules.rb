@@ -7,7 +7,7 @@ module Pork::Generators
   class VdsRules
     attr_accessor :rules
     
-    def initialize(pgname:)
+    def initialize(pgname)
       @pgname = pgname
       @rules = []
     end
