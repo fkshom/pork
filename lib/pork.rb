@@ -7,7 +7,7 @@ require_relative "pork/version"
 require_relative "pork/logger"
 require_relative "pork/repository"
 require_relative "pork/generators/vds_rules"
-
+require_relative "pork/formatter"
 module Pork
   class Error < StandardError; end
   class << self
